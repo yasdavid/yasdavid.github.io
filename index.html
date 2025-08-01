@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <<script src="https://www.google.com/recaptcha/api.js?render=6LclfJYrAAAAAD0u-sPsKwVKOJAAhZQyIIlVz-6K"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LclfJYrAAAAAD0u-sPsKwVKOJAAhZQyIIlVz-6K"></script>
   <title>Yas and David Wedding</title>
   <style>
     body, html {
@@ -167,7 +167,7 @@
                       </div>
                       <button type="submit">Submit RSVP</button>
                       <div class="form-group" style="margin-top: 1rem;">
-                          <button type="button" onclick="flipCard()">Back to Image</button>
+                          <button type="button" onclick="flipCard()">Back to Cover</button>
                       </div>
                   </form>
 
@@ -175,6 +175,10 @@
                       <img src="bellesRivesDeck.jpg" alt="Belles Rives Deck" />
                   </div>
               </div>
+            <div id="confirmationMessage" style="display: none;">
+              <h2>Thank you!</h2>
+              <p>Your RSVP has been submitted.</p>
+            </div>
               <div class="map-container">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21333.296821900407!2d7.114491878555721!3d43.56236940043325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12ce7f8b15a306e7%3A0x403ea457fcc68c6e!2sHotel%20Belles%20Rives!5e1!3m2!1sen!2sca!4v1754021968240!5m2!1sen!2sca"
                       width="100%"
@@ -247,6 +251,7 @@
         .then(data => {
           if (data.status === "success") {
             alert("RSVP submitted!");
+            document.getElementById("confirmationMessage").style.display = "block";
             document.getElementById("rsvpForm").reset();
           } else {
             alert("Submission failed. Try again.");
