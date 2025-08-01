@@ -20,8 +20,12 @@
         perspective: 1500px;
         width: 90vw;
         max-width: 1000px;
-        height: 90vh;
-        margin-top: 5px;
+        margin: 5px auto;
+	height: auto;
+	aspect-ratio: 6 / 5;
+	display: flex;
+  	align-items: center;
+  	justify-content: center;
     }
 
     .card {
@@ -59,6 +63,8 @@
         padding: 2rem;
         transform: rotateY(180deg);
         overflow-y: auto;
+	overflow-x: hidden;
+  	box-sizing: border-box;
     }
 
     .card-back h1 {
@@ -89,7 +95,7 @@
 
     .flip-btn-container {
       position: absolute;
-      bottom: 20px;
+      top: 20px;
       right: 20px;
       z-index: 10;
     }
@@ -157,7 +163,7 @@
         width: 100%;
         height: auto;
         border-radius: 12px;
-        object-fit: cover;
+        object-fit: contain;
     }
 
     .attendee-name {
@@ -188,8 +194,12 @@
                           <label>Attendee 1 Name:</label>
                           <input type="text" name="attendee1" class="attendee-name" required />
                       </div>-->
-                    <label>Please RSVP at the following link:</label>
-                      <button type="submit">RSVP Link</button>
+                      <div class="form-group" style="margin-top: 1rem;">
+                          <label>Please RSVP at the following link:</label>
+                      </div>
+		      <div class="form-group" style="margin-top: 1rem;">
+                          <button type="submit">RSVP Link</button>
+                      </div>
                       <div class="form-group" style="margin-top: 1rem;">
                           <button type="button" onclick="flipCard()">Back to Cover</button>
                       </div>
