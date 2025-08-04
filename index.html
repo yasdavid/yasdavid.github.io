@@ -16,17 +16,37 @@
       justify-content: center;
     }
 
+    .viewport-wrapper {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
     .card-container {
+        aspect-ratio: 6 / 5;
+        width: min(90vw, calc(90vh * (6 / 5)));
+        height: auto;
+        perspective: 1500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /*.card-container {
         perspective: 1500px;
         width: 90vw;
         max-width: 1000px;
         margin: 5px auto;
-	height: auto;
-	aspect-ratio: 6 / 5;
-	display: flex;
-  	align-items: center;
-  	justify-content: center;
-    }
+        height: auto;
+	    max-height: 90vw;
+	    aspect-ratio: 6 / 5;
+	    display: flex;
+  	    align-items: center;
+  	    justify-content: center;
+    }*/
 
     .card {
         width: 100%;
@@ -172,62 +192,64 @@
   </style>
 </head>
 <body>
-  <div class="card-container">
-    <div class="card" id="flipCard">
-      <div class="card-face card-front">
-        <img src="InviteImage.jpg" alt="Invite" style="object-position: center top; width: 100%; height: 100%; object-fit: cover; transform: scale(1);"  />
-        <div class="flip-btn-container">
-          <button onclick="flipCard()">More Info / RSVP</button>
-        </div>
-      </div>
-      <div class="card-face card-back">
-          <h1>You're Invited!</h1>
-          <p>Join us to celebrate at the Hotel Belles Rives in Juan-les-Pins on the afternoon and evening of April 30, 2026. More details to follow. Please RSVP below.</p>
-          <div class="back-main">
-              <div class="back-content">
-                  <form id="rsvpForm" onsubmit="handleSubmit(event)">
-                      <!--<div class="form-group">
-                          <label>Number of Attendees:</label>
-                          <input type="number" id="attendeeCount" min="1" value="1" onchange="updateAttendeeFields()" />
-                      </div>
-                      <div id="attendeeNames" class="form-group">
-                          <label>Attendee 1 Name:</label>
-                          <input type="text" name="attendee1" class="attendee-name" required />
-                      </div>-->
-                      <div class="form-group" style="margin-top: 1rem;">
-                          <label>Please RSVP at the following link:</label>
-                      </div>
-		      <div class="form-group" style="margin-top: 1rem;">
-                          <button type="submit">RSVP Link</button>
-                      </div>
-                      <div class="form-group" style="margin-top: 1rem;">
-                          <button type="button" onclick="flipCard()">Back to Cover</button>
-                      </div>
-                  </form>
-                  <div class="side-image">
-                      <img src="bellesRivesDeck.jpg" alt="Belles Rives Deck" />
-                  </div>
-              </div>
-            <div id="confirmationMessage" style="display: none;">
-              <h2>Thank you!</h2>
-              <p>Your RSVP has been submitted.</p>
+    <div class="viewport-wrapper">
+        <div class="card-container">
+            <div class="card" id="flipCard">
+                <div class="card-face card-front">
+                    <img src="InviteImage.jpg" alt="Invite" style="object-position: center top; width: 100%; height: 100%; object-fit: cover; transform: scale(1);" />
+                    <div class="flip-btn-container">
+                        <button onclick="flipCard()">More Info / RSVP</button>
+                    </div>
+                </div>
+                <div class="card-face card-back">
+                    <h1>You're Invited!</h1>
+                    <p>Join us to celebrate at the Hotel Belles Rives in Juan-les-Pins on the afternoon and evening of April 30, 2026. More details to follow. Please RSVP below.</p>
+                    <div class="back-main">
+                        <div class="back-content">
+                            <form id="rsvpForm" method="post" onsubmit="handleSubmit()">
+                                <div class="form-group">
+                                    <label>Number of Attendees:</label>
+                                    <input type="number" id="attendeeCount" min="1" value="1" onchange="updateAttendeeFields()" />
+                                </div>
+                                <div id="attendeeNames" class="form-group">
+                                    <label>Attendee 1 Name:</label>
+                                    <input type="text" name="attendee1" class="attendee-name" required />
+                                </div>
+                                <!--<div class="form-group" style="margin-top: 1rem;">
+                                    <label>Please RSVP at the following link:</label>
+                                </div>-->
+                                <div class="form-group" style="margin-top: 1rem;">
+                                    <button type="submit">Submit RSVP</button>
+                                </div>
+                                <div class="form-group" style="margin-top: 1rem;">
+                                    <button type="button" onclick="flipCard()">Back to Cover</button>
+                                </div>
+                            </form>
+                            <div class="side-image">
+                                <img src="bellesRivesDeck.jpg" alt="Belles Rives Deck" />
+                            </div>
+                        </div>
+                        <div id="confirmationMessage" style="display: none;">
+                            <h2>Thank you!</h2>
+                            <p>Your RSVP has been submitted.</p>
+                        </div>
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21333.296821900407!2d7.114491878555721!3d43.56236940043325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12ce7f8b15a306e7%3A0x403ea457fcc68c6e!2sHotel%20Belles%20Rives!5e1!3m2!1sen!2sca!4v1754021968240!5m2!1sen!2sca"
+                                    width="100%"
+                                    height="300"
+                                    style="border:0; border-radius: 8px;"
+                                    allowfullscreen=""
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <div class="bottom-image">
+                            <img src="bellesRivesRestaurant.jpg" alt="Belles Rives Deck" />
+                        </div>
+                    </div>
+                </div>
             </div>
-              <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21333.296821900407!2d7.114491878555721!3d43.56236940043325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12ce7f8b15a306e7%3A0x403ea457fcc68c6e!2sHotel%20Belles%20Rives!5e1!3m2!1sen!2sca!4v1754021968240!5m2!1sen!2sca"
-                      width="100%"
-                      height="300"
-                      style="border:0; border-radius: 8px;"
-                      allowfullscreen=""
-                      loading="lazy"
-                      referrerpolicy="no-referrer-when-downgrade"></iframe>
-              </div>
-              <div class="bottom-image">
-                <img src="bellesRivesRestaurant.jpg" alt="Belles Rives Deck" />
-              </div>
         </div>
-      </div>
     </div>
-  </div>
 
   <script>
     const card = document.getElementById('flipCard');
@@ -258,42 +280,41 @@
 
     async function handleSubmit(event) {
       event.preventDefault();
-      window.open("https://yas-david.ca", "_blank");
-      //const count = parseInt(document.getElementById("attendeeCount").value, 10);
-      //const attendees = [];
-      //for (let i = 1; i <= count; i++) {
-      //  const val = document.querySelector(`input[name="attendee${i}"]`).value.trim();
-      //  if (val) attendees.push(val);
-      //}
+      //window.open("https://yas-david.ca", "_blank");
+      const count = parseInt(document.getElementById("attendeeCount").value, 10);
+      const attendees = [];
+      for (let i = 1; i <= count; i++) {
+        const val = document.querySelector(`input[name="attendee${i}"]`).value.trim();
+        if (val) attendees.push(val);
+      }
   
-      //grecaptcha.ready(function() {
-      //  grecaptcha.execute('6LclfJYrAAAAAD0u-sPsKwVKOJAAhZQyIIlVz-6K', {action: 'submit'}).then(function(token) {
-      //    // Send data
-      //    fetch('https://script.google.com/macros/s/AKfycbxRsZHmTjg7DBfWoUWPzYC_OyZAjAInYdnTV1Evi_klkMtxeNE6ufQakmtD5jVOxhEv/exec', {
-      //      method: 'POST',
-      //      headers: {
-      //        'Content-Type': 'application/json'
-      //      },
-      //      body: JSON.stringify({
-      //        attendeeCount: count,
-      //        attendees: attendees,
-      //        token: token
-      //      })
-      //    })
-      //    .then(res => res.json())
-      //    .then(data => {
-      //      if (data.status === "success") {
-      //        alert("RSVP submitted!");
-      //        document.getElementById("confirmationMessage").style.display = "block";
-      //        document.getElementById("rsvpForm").reset();
-      //      } else {
-      //        alert("Submission failed. Try again.");
-      //      }
-      //    });
-      //  });
-      //});
+      grecaptcha.ready(function() {
+        grecaptcha.execute('6LclfJYrAAAAAD0u-sPsKwVKOJAAhZQyIIlVz-6K', {action: 'submit'}).then(function(token) {
+          // Send data
+            fetch('https://script.google.com/macros/s/AKfycbzO_-37jeGdyOXzfgc2IrdMI7Rzge44I30S_33K2qnupG9b3Ry8OaIE1GsS5jQoFTzp/exec', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              attendeeCount: count,
+              attendees: attendees,
+              token: token
+            })
+          })
+          .then(res => res.json())
+          .then(data => {
+            if (data.status === "success") {
+              alert("RSVP submitted!");
+              document.getElementById("confirmationMessage").style.display = "block";
+              document.getElementById("rsvpForm").reset();
+            } else {
+              alert("Submission failed. Try again.");
+            }
+          });
+        });
+      });
     }
   </script>
 </body>
 </html>
-
