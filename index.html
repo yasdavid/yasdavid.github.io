@@ -214,7 +214,7 @@
                     <p>Join us to celebrate at the Hotel Belles Rives in Juan-les-Pins on the afternoon and evening of April 30, 2026. More details to follow. Please RSVP below.</p>
                     <div class="back-main">
                         <div class="back-content">
-                            <form id="rsvpForm" onsubmit="handleSubmit()">
+                            <form id="rsvpForm">
                                 <div id="attendeeCount" class="form-group">
                                     <label>Number of Attendees:</label>
                                     <input type="number" id="attendeeCount" min="1" value="1" required />
@@ -273,6 +273,17 @@
 
     function onSubmit(token) {
         document.getElementById("rsvpForm").submit();
+        const form = document.getElementById('rsvpForm');
+     const data = new FormData(form);
+     fetch("https://script.google.com/macros/s/AKfycbw-UWQrxmwS-IPMEGXytZu3Pi9DoYng90HldEX8JcD7lOAerMpeznBC5bGglBU6ylcx/exec", {
+      method: 'POST',
+      body: data,
+     })
+     .then(() => {
+      alert("RSVP submitted!");
+      document.getElementById("confirmationMessage").style.display = "block";
+      document.getElementById("rsvpForm").reset();
+     });
     }
 
     function updateAttendeeFields() {
@@ -293,23 +304,9 @@
         container.appendChild(input);
       }
     }
-
-    async function handleSubmit(event) {
-      event.preventDefault();
-     const form = document.getElementById('rsvpForm');
-     const data = new FormData(form);
-     fetch("https://script.google.com/macros/s/AKfycbw-UWQrxmwS-IPMEGXytZu3Pi9DoYng90HldEX8JcD7lOAerMpeznBC5bGglBU6ylcx/exec", {
-      method: 'POST',
-      body: data,
-     })
-     .then(() => {
-      alert("RSVP submitted!");
-      document.getElementById("confirmationMessage").style.display = "block";
-      document.getElementById("rsvpForm").reset();
-     })
-    }
   </script>
 </body>
 </html>
+
 
 
